@@ -32,10 +32,9 @@ class Expense:
         return self.type == ExpenseType.DINNER or self.type == ExpenseType.BREAKFAST
 
 class ExpenseReportPrinter:
-    def print_report(self, expenses: List[Expense], now: Callable=datetime.now):
+    def print_report(self, expenses: List[Expense], now: Callable[[datetime]]=datetime.now):
         report = ExpenseReport(expenses)
 
-        # TODO: Reemplazar con datetime.now()
         print("Expense Report", now())
 
         for expense in report.expenses:
