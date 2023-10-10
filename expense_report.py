@@ -49,16 +49,10 @@ class ExpenseReportPrinter:
 class ExpenseReport():
     def __init__(self, expenses: List[Expense]) -> None:
         self.expenses = expenses
+
     def calculate_meals_total(self) -> int:
-        meals = 0
-        for expense in self.expenses:
-            if expense.is_meal():
-                meals += expense.amount
-        return meals
+        return sum(e.amount for e in self.expenses if e.is_meal())
 
     def calculate_total(self) -> int:
-        total = 0
-        for expense in self.expenses:
-            total += expense.amount
-        return total
+        return sum(e.amount for e in self.expenses)
 
