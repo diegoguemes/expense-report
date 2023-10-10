@@ -15,24 +15,39 @@ class Expense:
     type: ExpenseType
     amount: int
 
-    def name(self):
-        name = ""
-        if self.type == ExpenseType.DINNER:
-            name = "Dinner"
-        elif self.type == ExpenseType.BREAKFAST:
-            name = "Breakfast"
-        elif self.type == ExpenseType.CAR_RENTAL:
-            name = "Car Rental"
-        return name
-    
-    def is_over_expense(self):
-        return self.type == ExpenseType.DINNER and self.amount > 5000 or self.type == ExpenseType.BREAKFAST and self.amount > 1000
+class DinnerExpense(Expense):
+    def name(self) -> str:
+        return "Dinner"
 
+    def is_over_expense(self):
+        return self.amount > 5000
+    
     def is_meal(self):
-        return self.type == ExpenseType.DINNER or self.type == ExpenseType.BREAKFAST
+        return True
+
+class BreakfastExpense(Expense):
+    def name(self) -> str:
+        return "Breakfast"
+
+    def is_over_expense(self):
+        return self.amount > 1000
+    
+    def is_meal(self):
+        return True
+
+class CarRentalExpense(Expense):
+    def name(self) -> str:
+        return "Car Rental"
+
+    def is_over_expense(self):
+        return False
+    
+    def is_meal(self):
+        return False
+
 
 class ExpenseReportPrinter:
-    def print_report(self, expenses: List[Expense], now: Callable[[datetime]]=datetime.now):
+    def print_report(self, expenses: List[Expense], now: Callable=datetime.now):
         report = ExpenseReport(expenses)
 
         print("Expense Report", now())
@@ -54,4 +69,3 @@ class ExpenseReport():
 
     def calculate_total(self) -> int:
         return sum(e.amount for e in self.expenses)
-

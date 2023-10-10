@@ -1,17 +1,15 @@
 from datetime import datetime
-from expense_report import Expense, ExpenseReportPrinter, ExpenseType
+from expense_report import BreakfastExpense, CarRentalExpense, DinnerExpense, ExpenseReportPrinter, ExpenseType
 from io import StringIO
 import sys
 
-dinner = Expense()
-dinner.type = ExpenseType.DINNER
+dinner = DinnerExpense()
 dinner.amount = 7500
 
-car_rental = Expense()
-car_rental.type = ExpenseType.CAR_RENTAL
+car_rental = CarRentalExpense()
 car_rental.amount = 10000
 
-breakfast = Expense()
+breakfast = BreakfastExpense()
 breakfast.type = ExpenseType.BREAKFAST
 breakfast.amount = 1000
 
