@@ -21,7 +21,8 @@ class ExpenseReport:
         total = 0
         meals = 0
 
-        print("Expense Report", datetime.now().strftime(locale.nl_langinfo(locale.D_T_FMT)))
+        # TODO: Reemplazar con datetime.now()
+        print("Expense Report", datetime(2023, 10, 3))
 
         for expense in expenses:
             if expense.type == ExpenseType.DINNER or expense.type == ExpenseType.BREAKFAST:
