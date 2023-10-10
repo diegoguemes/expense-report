@@ -25,20 +25,30 @@ class ExpenseReport:
         print("Expense Report", datetime(2023, 10, 3))
 
         for expense in expenses:
-            if expense.type == ExpenseType.DINNER or expense.type == ExpenseType.BREAKFAST:
+            if self.is_meal(expense):
                 meals += expense.amount
 
-            name = ""
-            if expense.type == ExpenseType.DINNER:
-                name = "Dinner"
-            elif expense.type == ExpenseType.BREAKFAST:
-                name = "Breakfast"
-            elif expense.type == ExpenseType.CAR_RENTAL:
-                name = "Car Rental"
+            name = self.expense_name(expense)
 
-            meal_over_expenses_marker = "X" if expense.type == ExpenseType.DINNER and expense.amount > 5000 or expense.type == ExpenseType.BREAKFAST and expense.amount > 1000 else " "
+            meal_over_expenses_marker = "X" if self.is_over_expense(expense) else " "
             print(name, "\t", expense.amount, "\t", meal_over_expenses_marker)
             total += expense.amount
 
         print("Meals:", meals)
         print("Total:", total)
+
+    def expense_name(self, expense):
+        name = ""
+        if expense.type == ExpenseType.DINNER:
+            name = "Dinner"
+        elif expense.type == ExpenseType.BREAKFAST:
+            name = "Breakfast"
+        elif expense.type == ExpenseType.CAR_RENTAL:
+            name = "Car Rental"
+        return name
+
+    def is_over_expense(self, expense):
+        return expense.type == ExpenseType.DINNER and expense.amount > 5000 or expense.type == ExpenseType.BREAKFAST and expense.amount > 1000
+
+    def is_meal(self, expense):
+        return expense.type == ExpenseType.DINNER or expense.type == ExpenseType.BREAKFAST
