@@ -17,9 +17,8 @@ def dummy_now():
 
 def test_empty_report():
     out = StringIO()
-    sys.stdout = out
 
-    ExpenseReportPrinter().print_report([], now=dummy_now)
+    ExpenseReportPrinter(out).print_report([], now=dummy_now)
     
     assert out.getvalue() == (
         'Expense Report 2023-10-03 00:00:00\n'
@@ -29,9 +28,8 @@ def test_empty_report():
 
 def test_one_dinner():
     out = StringIO()
-    sys.stdout = out
 
-    ExpenseReportPrinter().print_report([dinner], now=dummy_now)
+    ExpenseReportPrinter(out).print_report([dinner], now=dummy_now)
 
     assert out.getvalue() == (
         'Expense Report 2023-10-03 00:00:00\n'
@@ -42,9 +40,8 @@ def test_one_dinner():
 
 def test_one_car_rental():
     out = StringIO()
-    sys.stdout = out
 
-    ExpenseReportPrinter().print_report([car_rental], now=dummy_now)
+    ExpenseReportPrinter(out).print_report([car_rental], now=dummy_now)
 
     assert out.getvalue() == (
         'Expense Report 2023-10-03 00:00:00\n'
@@ -55,9 +52,8 @@ def test_one_car_rental():
 
 def test_multiple_expenses():
     out = StringIO()
-    sys.stdout = out
 
-    ExpenseReportPrinter().print_report([breakfast, dinner, car_rental], now=dummy_now)
+    ExpenseReportPrinter(out).print_report([breakfast, dinner, car_rental], now=dummy_now)
 
     assert out.getvalue() == (
         'Expense Report 2023-10-03 00:00:00\n'

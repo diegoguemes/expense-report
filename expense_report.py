@@ -2,6 +2,7 @@ import locale
 from enum import Enum, unique, auto
 from datetime import datetime
 from typing import Callable, List
+import sys
 
 
 class Expense:
@@ -39,17 +40,20 @@ class CarRentalExpense(Expense):
 
 
 class ExpenseReportPrinter:
+    def __init__(self, file=sys.stdout):
+        self.file = file
+
     def print_report(self, expenses: List[Expense], now: Callable=datetime.now):
         report = ExpenseReport(expenses)
 
-        print("Expense Report", now())
+        print("Expense Report", now(), file=self.file)
 
         for expense in report.expenses:
             meal_over_expenses_marker = "X" if expense.is_over_expense() else " "
-            print(expense.name(), "\t", expense.amount, "\t", meal_over_expenses_marker)
+            print(expense.name(), "\t", expense.amount, "\t", meal_over_expenses_marker, file=self.file)
 
-        print("Meals:", report.calculate_meals_total())
-        print("Total:", report.calculate_total())
+        print("Meals:", report.calculate_meals_total(), file=self.file)
+        print("Total:", report.calculate_total(), file=self.file)
 
 
 class ExpenseReport():
