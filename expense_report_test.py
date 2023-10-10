@@ -1,4 +1,4 @@
-from expense_report import Expense, ExpenseReport, ExpenseType
+from expense_report import Expense, ExpenseReportPrinter, ExpenseType
 from io import StringIO
 import sys
 
@@ -18,7 +18,7 @@ def test_empty_report():
     out = StringIO()
     sys.stdout = out
 
-    ExpenseReport().print_report([])
+    ExpenseReportPrinter().print_report([])
     
     assert out.getvalue() == (
         'Expense Report 2023-10-03 00:00:00\n'
@@ -30,7 +30,7 @@ def test_one_dinner():
     out = StringIO()
     sys.stdout = out
 
-    ExpenseReport().print_report([dinner])
+    ExpenseReportPrinter().print_report([dinner])
 
     assert out.getvalue() == (
         'Expense Report 2023-10-03 00:00:00\n'
@@ -43,7 +43,7 @@ def test_one_car_rental():
     out = StringIO()
     sys.stdout = out
 
-    ExpenseReport().print_report([car_rental])
+    ExpenseReportPrinter().print_report([car_rental])
 
     assert out.getvalue() == (
         'Expense Report 2023-10-03 00:00:00\n'
@@ -56,7 +56,7 @@ def test_multiple_expenses():
     out = StringIO()
     sys.stdout = out
 
-    ExpenseReport().print_report([breakfast, dinner, car_rental])
+    ExpenseReportPrinter().print_report([breakfast, dinner, car_rental])
 
     assert out.getvalue() == (
         'Expense Report 2023-10-03 00:00:00\n'
