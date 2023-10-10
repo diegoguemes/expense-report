@@ -34,19 +34,27 @@ class Expense:
 class ExpenseReport:
     def print_report(self, expenses: List[Expense]):
         total = 0
-        meals = 0
 
         # TODO: Reemplazar con datetime.now()
         print("Expense Report", datetime(2023, 10, 3))
 
         for expense in expenses:
-            if expense.is_meal():
-                meals += expense.amount
-
             meal_over_expenses_marker = "X" if expense.is_over_expense() else " "
             print(expense.name(), "\t", expense.amount, "\t", meal_over_expenses_marker)
-            total += expense.amount
 
-        print("Meals:", meals)
-        print("Total:", total)
+        print("Meals:", self.calculate_meals_total(expenses))
+        print("Total:", self.calculate_total(expenses))
+
+    def calculate_meals_total(self, expenses: List[Expense]) -> int:
+        meals = 0
+        for expense in expenses:
+            if expense.is_meal():
+                meals += expense.amount
+        return meals
+
+    def calculate_total(self, expenses: List[Expense]) -> int:
+        total = 0
+        for expense in expenses:
+            total += expense.amount
+        return total
 
