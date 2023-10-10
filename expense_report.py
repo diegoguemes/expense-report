@@ -1,7 +1,7 @@
 import locale
 from enum import Enum, unique, auto
 from datetime import datetime
-from typing import List
+from typing import Callable, List
 
 
 @unique
@@ -32,11 +32,11 @@ class Expense:
         return self.type == ExpenseType.DINNER or self.type == ExpenseType.BREAKFAST
 
 class ExpenseReportPrinter:
-    def print_report(self, expenses: List[Expense]):
+    def print_report(self, expenses: List[Expense], now: Callable=datetime.now):
         report = ExpenseReport(expenses)
 
         # TODO: Reemplazar con datetime.now()
-        print("Expense Report", datetime(2023, 10, 3))
+        print("Expense Report", now())
 
         for expense in report.expenses:
             meal_over_expenses_marker = "X" if expense.is_over_expense() else " "
