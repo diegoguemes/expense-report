@@ -4,15 +4,7 @@ from datetime import datetime
 from typing import Callable, List
 
 
-@unique
-class ExpenseType(Enum):
-    DINNER = auto()
-    BREAKFAST = auto()
-    CAR_RENTAL = auto()
-
-
 class Expense:
-    type: ExpenseType
     amount: int
 
 class DinnerExpense(Expense):

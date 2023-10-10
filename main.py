@@ -1,8 +1,7 @@
-from expense_report import DinnerExpense, ExpenseReportPrinter, Expense, ExpenseType
+from expense_report import DinnerExpense, ExpenseReportPrinter
 
 
 if __name__ == '__main__':
     expense = DinnerExpense()
-    expense.type = ExpenseType.DINNER
     expense.amount = 7500
     ExpenseReportPrinter().print_report([expense])

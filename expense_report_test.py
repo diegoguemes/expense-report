@@ -1,5 +1,5 @@
 from datetime import datetime
-from expense_report import BreakfastExpense, CarRentalExpense, DinnerExpense, ExpenseReportPrinter, ExpenseType
+from expense_report import BreakfastExpense, CarRentalExpense, DinnerExpense, ExpenseReportPrinter
 from io import StringIO
 import sys
 
@@ -10,7 +10,6 @@ car_rental = CarRentalExpense()
 car_rental.amount = 10000
 
 breakfast = BreakfastExpense()
-breakfast.type = ExpenseType.BREAKFAST
 breakfast.amount = 1000
 
 def dummy_now():
